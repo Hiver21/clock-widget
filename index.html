@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reloj</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: 'Arial', sans-serif;
+    }
+    .clock-container {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    .clock {
+      font-size: 60px;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+    .date {
+      font-size: 24px;
+      color: #eee;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-container">
+    <div class="clock" id="clock"></div>
+    <div class="date" id="date"></div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const clockElement = document.getElementById('clock');
+      const dateElement = document.getElementById('date');
+      
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = now.toLocaleString('default', { month: 'long' });
+      const year = now.getFullYear();
+      
+      clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+      dateElement.textContent = `${day} ${month} ${year}`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // Run immediately to show clock right away
+  </script>
+</body>
+</html>
